@@ -1,0 +1,16 @@
+[
+    {
+        "model": "Contacts",
+        "pk": 1,
+        "fields": {
+          "name":"Євген",
+		  "surname":"Анонімов",
+          "bio":"Кодю на С & Shell під Linux (x86,armv7), Delphi під Win32",
+		  "email":"jeyzth@gmail.com",
+		  "jabber":"jeyzth@khavr.com",
+		  "skype":"jeyzth",
+		  "others":"т. 7717123456 м. +77071234567 м.+380501234567"
+        }
+    
+    }
+]
