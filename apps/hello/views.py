@@ -5,6 +5,7 @@ from hello.models import Contacts
 
 # Create your views here.
 
+
 def index(request):
     contacts = Contacts.objects.order_by('name')
     template = loader.get_template('hello/index.html')
@@ -12,6 +13,3 @@ def index(request):
         'contacts': contacts,
     })
     return HttpResponse(template.render(context))
-    
-    #render(request,'hello/index.html',contacts)
-
