@@ -10,9 +10,5 @@ from hello.models import Contacts
 
 def index(request):
     contacts = [Contacts.objects.get(name=u'Євген')]
-    #template = loader.get_template('hello/index.html')
-    #context = RequestContext(request, {
-    #    'contacts': contacts,
-    #}
-    context ={'contacts': contacts}
-    return render(request,'hello/index.html',context)
+    context = {'contacts': contacts}
+    return render(request, 'hello/index.html', context)

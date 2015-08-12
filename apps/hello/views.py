@@ -1,5 +1,7 @@
-from django.http import HttpResponse
-from django.template import RequestContext, loader
+# -*- coding: utf-8 -*-
+
+from django.shortcuts import render,get_object_or_404
+
 
 from hello.models import Contacts
 
@@ -7,9 +9,10 @@ from hello.models import Contacts
 
 
 def index(request):
-    contacts = Contacts.objects.order_by('name')
-    template = loader.get_template('hello/index.html')
-    context = RequestContext(request, {
-        'contacts': contacts,
-    })
-    return HttpResponse(template.render(context))
+    contacts = [Contacts.objects.get(name=u'Євген')]
+    context = {'contacts': contacts}
+    return render(request, 'hello/index.html', context)
+
+def h404(request):
+    contacts = get_object_or_404(Contacts, name=u'Євген')
+    return render(request, 'hello/h404.html', {'contacts': contacts})

@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
+
+
 from hello.models import Contacts
-# Create your tests here.
 
 
-class SomeTests(TestCase):
-    def test_math(self):
-        """ test
-        """
-        assert(2 + 2 == 4)
-
+class Tiket1TestsDB(TestCase):
     def test_add_rec(self):
-        """  test add rec """
+        """  This test check model for next opertion
+            Add record into table DB
+            Find record in table
+            Delete record from table
+        """
         new_rec = Contacts(
             name=u"Іван",
             surname=u"Пантов",
