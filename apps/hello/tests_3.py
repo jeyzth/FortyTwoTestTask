@@ -7,8 +7,9 @@ from hello.models import Contacts
 
 class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
-        """ This test must to check
-            All data of model are displayed on the main page.
+        """ This test appearance messedzha should check that the page was
+            not found when the field name does not correspond to that given
+            in view.
         """
         sbio = u"Кодю на С and Shell під Linux (x86,armv7),на Delphi під Win32"
         sothr = u"т. 7717123456 м. +77071234567 м.+380501234567"
@@ -27,13 +28,5 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        print "test_get_mainpage"
         print ucontent
-        assert(ucontent.find(u"Євген") > 0)
-        assert(ucontent.find(u"Анонімов") > 0)
-        assert(ucontent.find(u"3 лютого 1973 р.") > 0)
-        assert(ucontent.find(sbio) > 0)
-        assert(ucontent.find(u"jeyzth@gmail.com") > 0)
-        assert(ucontent.find(u"jeyzth@khavr.com") > 0)
-        assert(ucontent.find(u"ghost") > 0)
-        assert(ucontent.find(sothr) > 0)
+        assert(ucontent.find(u"Page Not Found") > 0)

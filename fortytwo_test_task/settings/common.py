@@ -30,6 +30,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+# 'localhost', '127.0.0.1','192.168.88.129','getbarista.com']
 
 
 # Application definition

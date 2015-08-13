@@ -15,11 +15,9 @@
         </head>
         <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
 
-             {% if contacts %}
+             {% if contact %}
              <h3> 42 Coffee Cups Test Assignment </h3>
              <div id="workspace">
-             {% for contact in contacts %}
-
              <div id="lcolumn">
                   <ul>
                       <li> Name:<span class="sfields">{{ contact.name }} </span> </li>
@@ -42,7 +40,6 @@
                        </li>
                    </ul>
               </div>
-              {% endfor %}     
               </div>
               {% endif %}
 

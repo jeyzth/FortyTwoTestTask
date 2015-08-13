@@ -7,8 +7,10 @@ from hello.models import Contacts
 
 class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
-        """ This test must to check
-            Showing a single entry, even if several base
+        """ This test creates 3 model then makes http request and checks
+            whether matched only fields (data) second model povvynni attend
+            the html page. Data models 1 and 3 should not be on page. For
+            example at page  not be "Aldar" and "hodzha".
         """
         sbio = u"Кодю на С and Shell під Linux (x86,armv7),на Delphi під Win32"
         sothr = u"т. 7717123456 м. +77071234567 м.+380501234567"

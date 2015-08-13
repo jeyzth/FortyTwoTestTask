@@ -7,8 +7,8 @@ from hello.models import Contacts
 
 class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
-        """ This test must to check
-            All data of model are displayed on the main page.
+        """  This test checks whether all fields models shown on the web page
+             and correctly display Unicode Data.
         """
         sbio = u"Кодю на С and Shell під Linux (x86,armv7),на Delphi під Win32"
         sothr = u"т. 7717123456 м. +77071234567 м.+380501234567"
