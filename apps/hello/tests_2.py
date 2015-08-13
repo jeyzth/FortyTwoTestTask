@@ -12,9 +12,6 @@ class Tiket1TestAllFieldsOnPage(TestCase):
             the html page. Data models 1 and 3 should not be on page. For
             example at page  not be "Aldar" and "hodzha".
         """
-        sbio = u"Кодю на С and Shell під Linux (x86,armv7),на Delphi під Win32"
-        sothr = u"т. 7717123456 м. +77071234567 м.+380501234567"
-
         new_rec1 = Contacts(
             name=u"Алдар",
             surname=u"Косе",
@@ -26,7 +23,7 @@ class Tiket1TestAllFieldsOnPage(TestCase):
             others="Хтозна"
         )
 
-        new_rec2 = Contacts(
+        """new_rec2 = Contacts(
             name=u"Євген",
             surname=u"Анонімов",
             dateofbird=u"1973-02-03",
@@ -36,6 +33,7 @@ class Tiket1TestAllFieldsOnPage(TestCase):
             skype=u"ghost",
             others=sothr
         )
+        """
 
         new_rec3 = Contacts(
             name=u"Ходжа",
@@ -49,7 +47,8 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         )
 
         new_rec1.save()
-        new_rec2.save()
+        """new_rec2.save()
+        """
         new_rec3.save()
         c = Client()
         response = c.get('http://localhost:8080')
@@ -58,8 +57,7 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         """
         assert(ucontent.find(u"Алдар") < 0)
         assert(ucontent.find(u"Косе") < 0)
-        assert(ucontent.find(u"3 лютого 1973 р.") > 0)
-        assert(ucontent.find(sbio) > 0)
+        assert(ucontent.find(u"9 березня 1973 р.") > 0)
         assert(ucontent.find(u"jeyzth@gmail.com") > 0)
         assert(ucontent.find(u"jeyzth@khavr.com") > 0)
         assert(ucontent.find(u"hodzha") < 0)
