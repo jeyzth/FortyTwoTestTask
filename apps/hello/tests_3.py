@@ -28,5 +28,6 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        print ucontent
+        """print ucontent
+        """
         assert(ucontent.find(u"Page Not Found") > 0)

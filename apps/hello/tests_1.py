@@ -27,8 +27,8 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        print "test_get_mainpage"
-        print ucontent
+        """ print ucontent
+        """
         assert(ucontent.find(u"Євген") > 0)
         assert(ucontent.find(u"Анонімов") > 0)
         assert(ucontent.find(u"3 лютого 1973 р.") > 0)
