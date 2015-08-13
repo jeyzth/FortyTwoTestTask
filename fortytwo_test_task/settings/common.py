@@ -30,6 +30,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+# 'localhost', '127.0.0.1','192.168.88.129','getbarista.com']
 
 
 # Application definition
@@ -72,7 +73,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk'
+# 'en-us'
 
 TIME_ZONE = 'UTC'
 

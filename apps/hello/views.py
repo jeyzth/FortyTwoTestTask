@@ -1,15 +1,11 @@
-from django.http import HttpResponse
-from django.template import RequestContext, loader
+# -*- coding: utf-8 -*-
+from django.shortcuts import render, get_object_or_404
+
 
 from hello.models import Contacts
 
-# Create your views here.
-
 
 def index(request):
-    contacts = Contacts.objects.order_by('name')
-    template = loader.get_template('hello/index.html')
-    context = RequestContext(request, {
-        'contacts': contacts,
-    })
-    return HttpResponse(template.render(context))
+    contact = get_object_or_404(Contacts, name=u'Євген')
+    context = {'contact': contact}
+    return render(request, 'hello/index.html', context)

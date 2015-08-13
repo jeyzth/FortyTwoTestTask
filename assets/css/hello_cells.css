@@ -1,3 +1,8 @@
+      body {
+          background-image: url(cell10x10.gif);
+          background-position: top centr;
+          background-repeat: repeat;
+      }
 
       #workspace {
           width: 960px ;

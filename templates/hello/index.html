@@ -1,101 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:py="http://genshi.edgewall.org/"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      lang="en">
-                                  
-<head>
-   <meta content="text/html; charset=UTF-8"  http-equiv="content-type"  py:replace="''"/>
-   <title>42-test-jeyzth6#1</title>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock title %}42-test-jeyzth6#1</title>
+        <meta http-equiv="X-UA-Compatible"  content="chrome=IE7" />
+        <meta name="viewport"   content="initial-scale=1.0, width=device-width"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet"  href="{% static 'css/screen.css' %}" media="screen,  %projection"/>
+        <link rel="stylesheet"  href="{% static 'css/hello.css' %}" media="screen,  %projection"/>
+        {% block extra_head %}{% endblock extra_head %}
 
-   <style type="text/css">
+        </head>
+        <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
 
-      body {
-          background-image: url(cell10x10.gif);
-          background-position: top centr;
-          background-repeat: repeat;
-      }
+             {% if contact %}
+             <h3> 42 Coffee Cups Test Assignment </h3>
+             <div id="workspace">
+             <div id="lcolumn">
+                  <ul>
+                      <li> Name:<span class="sfields">{{ contact.name }} </span> </li>
+                      <li> Surname:<span class="sfields">{{ contact.surname }} </span> </li>
+                      <li> Date of Bird:<span class="sfields">{{ contact.dateofbird }} </span> </li>
+                      <li> Bio:
+                          <div id="multiline">{{ contact.bio|linebreaksbr }}</div>
+                      </li>
+                   </ul>
+              </div>
 
-      #workspace {
-          width: 960px ;
-          margin-right: auto;
-          margin-left: auto;
-          padding-left: 30 px;
-          overflow: hidden;
-      }
+              <div id="rcolumn">
+                   <ul>
+                       <li>Contacts:</li>
+                       <li> Email:<span class="sfields">  {{ contact.email }} </span> </li>
+                       <li> Jabber: <span class="sfields">{{ contact.jabber }} </span> </li>
+                       <li> Skype: <span class="sfields"> {{ contact.skype }}</span> </li>
+                       <li> Other contacts:
+                           <div id="multiline"> {{ contact.others|linebreaksbr }} </div>
+                       </li>
+                   </ul>
+              </div>
+              </div>
+              {% endif %}
 
-      #lcolumn {
-          float: left;
-          width: 300px;
-      } 
-
-      #rcolumn {
-          margin-left: 380px;
-          width: 300px;
-      }
-
-      #multiline {
-          color: black;
-          font-weight: bold;
-          margin-left: 10px;
-          margin-right: 10px;
-          padding: 5px; 
-      }
-
-      .sfields {
-          color: black;
-          font-weight: bold;
-          margin: 2px;
-          padding: 5px; 
-      }
-
-
-      ul {
-         list-style: none;
-      }
-
-      li {
-          margin: 5px;
-          padding: 5px; 
-      }
-    </style>
-
-</head>
-<body>
-
-
-{% if contacts %}
-    <h3> 42 Coffee Cups Test Assignment </h3>
-    <div id="workspace">
-    {% for contact in contacts %}        
-
-        
-        <div id="lcolumn">
-            <ul>
-                <li> Name:<span class="sfields">{{ contact.name }} </span> </li>
-                <li> Surname:<span class="sfields">{{ contact.surname }} </span> </li>
-                <li> Date of Bird:<span class="sfields">{{  contact.dateofbird }} </span> </li>
-                <li> Bio:
-                    <div id="multiline"><pre>{{ contact.bio }}</pre></div>
-                </li>
-            </ul>
-         </div>
-         
-         <div id="rcolumn">
-             <ul>
-                 <li>Contacts:</li>
-                 <li> Email:<span class="sfields">  {{  contact.email  }} </span> </li>
-                 <li> Jabber: <span class="sfields">{{  contact.jabber }} </span> </li>
-                 <li> Skype: <span class="sfields"> {{  contact.skype  }}</span> </li>
-                 <li> Other contacts:
-                     <div id="multiline"> <pre> {{  contact.others }} </pre> </div>
-                 </li>
-              </ul>
-         </div>
-    {% endfor %}     
-         
-     </div>
-{% endif %}
-
+        {% block content %}{% endblock content %}
 </body>
 </html>
