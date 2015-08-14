@@ -11,7 +11,7 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        """ print ucontent
+        """ print content
         """
         assert(ucontent.find(u"Євген") > 0)
         assert(ucontent.find(u"Анонімов") > 0)
