@@ -14,4 +14,50 @@
         }
     
     }
+    ,
+    {
+        "model": "hello.MyRequest",
+        "pk": 1,
+        "fields": {
+                  "query_dt":"2015-08-05 00:00:10",
+                  "remote_ip":"192.168.88.1",
+		  "remote_host":"host-1",
+		  "query_string":"http://192.168.88.129"
+        }
+    }
+    ,
+    {
+        "model": "hello.MyRequest",
+        "pk": 2,
+        "fields": {
+                  "query_dt":"2015-08-05 00:00:10",
+                  "remote_ip":"192.168.88.2",
+		  "remote_host":"host-2",
+		  "query_string":"http://192.168.88.129"
+        }
+    }
+    ,
+    {
+        "model": "hello.MyRequest",
+        "pk": 3,
+        "fields": {
+                  "query_dt":"2015-08-05 00:00:10",
+                  "remote_ip":"192.168.88.3",
+		  "remote_host":"host-3",
+		  "query_string":"http://192.168.88.129"
+        }
+    }
+    ,
+    {
+        "model": "hello.MyRequest",
+        "pk": 4,
+        "fields": {
+                  "query_dt":"2015-08-05 00:00:10",
+                  "remote_ip":"192.168.88.4",
+		  "remote_host":"host-4",
+		  "query_string":"http://192.168.88.129"
+        }
+    }
 ]
+
+
