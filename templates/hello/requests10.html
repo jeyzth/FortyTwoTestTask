@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}Site Name</title>
+        <title>{% block title %}{% endblock title %}N 0</title>
 
         <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
 
@@ -14,10 +14,18 @@
         <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, %projection"/>
         <link rel="stylesheet" href="{% static 'css/requests10.css' %}" media="screen, %projection"/>
         {% block extra_head %}{% endblock extra_head %}
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript">
+        
+        </script>
     </head>
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
          {% if latest_requests_list %}
+        <script type="text/javascript">
+            var pk_onpage =new Array()  ;
+            var i = 0;
+        </script>
+         
               <table>
               <tr>
                   <th>
@@ -35,8 +43,13 @@
 
               </tr>
               {% for rqst in latest_requests_list %}
+              <script type="text/javascript">
+                 pk_onpage[i] = {{ rqst.pk }} ;
+                 i = i+ 1;
+              </script>
+
               <tr>
-                  <td>{{ rqst.query_dt }}</td> 
+                  <td> {{ rqst.query_dt }}</td> 
                   <td>{{ rqst.remote_ip }}</td>
                   <td>{{ rqst.remote_host }}</td> 
                   <td>{{ rqst.query_string }}</td> 
@@ -47,5 +60,21 @@
              <p>No requests are avaiable</p>
          {% endif %}
         {% block content %}{% endblock content %}
+        
+        <script type="text/javascript"> 
+           setInterval(function()
+              {
+                  $(function() {
+                      $.get("/hello/chknewreq", function(data) {
+                          //alert(data);
+                          var z = data - pk_onpage[0]
+                          document.title="N " + z;
+                      });
+                  });
+                  
+              }
+              ,1000);
+                   
+        </script>
     </body>
 </html>
