@@ -13,5 +13,9 @@ class Contacts(models.Model):
     skype = models.CharField(max_length=20)
     others = models.TextField()
 
-    def __unicode__(self):
-        return self.name
+
+class MyRequest(models.Model):
+    query_dt = models.DateTimeField([False, True])
+    remote_ip = models.IPAddressField()
+    remote_host = models.CharField(max_length=50)
+    query_string = models.URLField()

@@ -5,6 +5,14 @@
           margin-left: auto;
           padding-left: 30 px;
           overflow: hidden;
+          border-bottom: 2px solid black;
+      }
+      #footer {
+          width: 960px ;
+          margin-right: auto;
+          margin-left: auto;
+          padding-left: 30 px;
+          overflow: hidden;
       }
 
       #lcolumn {
