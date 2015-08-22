@@ -17,7 +17,6 @@
 
              {% if contact %}
              <div id="workspace">
-             <h3> 42 Coffee Cups Test Assignment  </h3>             
 
              <div id="workspace">
              <h3> 42 Coffee Cups Test Assignment </h3>
@@ -26,8 +25,10 @@
                       <li> Name:<span class="sfields">{{ contact.name }} </span> </li>
                       <li> Surname:<span class="sfields">{{ contact.surname }} </span> </li>
                       <li> Date of Bird:<span class="sfields">{{ contact.dateofbird }} </span> </li>
-                      <li> Bio:
-                          <div id="multiline">{{ contact.bio|linebreaksbr }}</div>
+                      <li> Photo:
+                          <div id="fotka">
+                          </div>
+                      
                       </li>
                    </ul>
               </div>
@@ -38,6 +39,10 @@
                        <li> Email:<span class="sfields">  {{ contact.email }} </span> </li>
                        <li> Jabber: <span class="sfields">{{ contact.jabber }} </span> </li>
                        <li> Skype: <span class="sfields"> {{ contact.skype }}</span> </li>
+                      <li> Bio:
+                          <div id="multiline">{{ contact.bio|linebreaksbr }}</div>
+                      </li>
+
                        <li> Other contacts:
                            <div id="multiline"> {{ contact.others|linebreaksbr }} </div>
                        </li>

@@ -49,3 +49,12 @@
           margin: 5px;
           padding: 5px; 
       }
+      
+      #fotka {
+         background-position: center;
+         background-image: url(/static/img/evgen.jpg);
+         background-repeat: no-repeat;
+         background-size: 100%;
+         width : 230px;
+         height: 320px;
+      }
