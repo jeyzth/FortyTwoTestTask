@@ -11,8 +11,9 @@ class Tiket1TestAllFieldsOnPage(TestCase):
             not found when the field name does not correspond to that given
             in view.
         """
-        del_rec = Contacts.objects.get(name=u"Євген")
+        del_rec = Contacts.objects.get(name=u'Євген')
         del_rec.delete()
+        """
         sbio = u"Кодю на С and Shell під Linux (x86,armv7),на Delphi під Win32"
         sothr = u"т. 7717123456 м. +77071234567 м.+380501234567"
         new_rec = Contacts(
@@ -27,9 +28,9 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         )
 
         new_rec.save()
+        """
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        """print ucontent
-        """
+        print ucontent
         assert(ucontent.find(u"Page Not Found") > 0)

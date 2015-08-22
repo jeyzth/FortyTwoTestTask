@@ -4,7 +4,7 @@ SETTINGS=fortytwo_test_task.settings.common
 auth:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --indent=2 auth > auth.json
 test:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test --pattern "test3_*.py"
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test --pattern "tests_*.py"
 	flake8 --exclude '*migrations*' apps fortytwo_test_task
 
 run:
