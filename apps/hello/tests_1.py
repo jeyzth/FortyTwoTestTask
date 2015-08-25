@@ -7,7 +7,7 @@ class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
         """  This test checks whether all fields models shown on the web page
              and correctly display Unicode Data.
-             This is string not importent 
+             This is string not importent
         """
         c = Client()
         response = c.get('http://localhost:8080')
