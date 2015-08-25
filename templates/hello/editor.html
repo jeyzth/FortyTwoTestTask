@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock title %}42-test-jeyzth6#1</title>
+        <meta http-equiv="X-UA-Compatible"  content="chrome=IE7" />
+        <meta name="viewport"   content="initial-scale=1.0, width=device-width"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet"  href="{% static 'css/screen.css' %}" media="screen,  %projection"/>
+        <link rel="stylesheet"  href="{% static 'css/hello.css' %}" media="screen,  %projection"/>
+        {% block extra_head %}{% endblock extra_head %}
+
+        </head>
+        <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+            <form action="/editor/" method="post" >
+             
+
+             <div id="workspace">
+             <h3> 42 Coffee Cups Test Assignment </h3>
+             
+             {{ form.non_field_errors }}
+             <div id="lcolumn">
+                  <ul>
+                      <li> 
+                          {{ form.name.errors }}
+                          <label for="id_name">Name:</label> {{ form.name }} </li>
+                      <li> 
+                          {{ form.surname.errors }}
+                          <label for="id_surname">Surname:</label> {{ form.surname }} </li>
+                      <li> 
+                          {{ form.dateofdird.errors }}
+                          <label for="id_dateofbird"> Date of Bird:</label> 
+                          {{ form.dateofbird }} </li>
+                      <li> Photo:
+                          <div id="fotka">
+                          </div>
+                      
+                      </li>
+                   </ul>
+              </div>
+
+              <div id="rcolumn">
+                   <ul>
+                       <li>Contacts:</li>
+                       <li> {{ form.email.errors }}
+                          <label for="id_email"> Email:</label>  {{ form.email }} </li>
+                       <li>  {{ form.jabber.errors }}
+                          <label for="id_jabber">Jabber:</label>{{ form.jabber }} </li>
+                       <li> {{ form.skype.errors }}
+                          <label for="id_skype"> Skype: </label> {{ form.skype }} </li>
+                      <li>  {{ form.bio.errors }}
+                          <label for="id_bio"> Bio:</label>
+                          <div id="multiline">{{ form.bio }}</div>
+                      </li>
+
+                       <li> {{ form.others.errors }}
+                           <label for="id_other">Other contacts:</label>
+                           <div id="multiline"> {{ form.others }} </div>
+                       </li>
+                   </ul>
+              </div>
+              
+              </div>
+            </form>
+
+              <div id="footer">
+              <a href="/hello/requests10">requests</a>
+              <div id="footer">              
+
+        {% block content %}{% endblock content %}
+</body>
+</html>

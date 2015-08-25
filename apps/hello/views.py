@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 from hello.models import Contacts
 from hello.models import MyRequest
-
+from hello.forms import FormContact
 
 def index(request):
     contact = get_object_or_404(Contacts, pk=1)
@@ -26,3 +26,20 @@ def chknewreq(request):
         return HttpResponse(str(cur_max_pk))
     else:
         return HttpResponse('no ajax')
+
+def editor(request):
+    if request.method == 'POST':
+         form = FormContact(request.POST)
+         if form.is_valid():
+             form.save()
+             return HttpResponseRedirect('/')
+    else:
+        form = FormContact()
+        print "Vasya"
+        contact = get_object_or_404(Contacts, pk=1)
+        
+        form. = contact.name
+    return render(request, 'hello/editor.html',{
+        'form':form,
+    })
+    

@@ -1,5 +1,5 @@
       body {
-          background-image: url(cell10x10.gif);
+          background-image: url(/static/img/cell10x10.gif);
           background-position: top centr;
           background-repeat: repeat;
       }
