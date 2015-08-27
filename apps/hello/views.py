@@ -34,12 +34,10 @@ def editor(request):
              form.save()
              return HttpResponseRedirect('/')
     else:
-        form = FormContact()
-        print "Vasya"
+
         contact = get_object_or_404(Contacts, pk=1)
-        
-        form. = contact.name
-    return render(request, 'hello/editor.html',{
+        form = FormContact(initial={'name':contact.name, 'surname':contact.surname, 'dateofbird':contact.dateofbird   })
+        return render(request, 'hello/editor.html',{
         'form':form,
     })
     
