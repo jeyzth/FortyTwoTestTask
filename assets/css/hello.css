@@ -5,7 +5,7 @@
           margin-left: auto;
           padding-left: 30 px;
           overflow: hidden;
-          border-bottom: 2px solid black;
+          border-bottom: 0px solid black;
       }
       #footer {
           width: 960px ;
@@ -13,6 +13,7 @@
           margin-left: auto;
           padding-left: 30 px;
           overflow: hidden;
+          display: none;
       }
 
       #lcolumn {
