@@ -7,9 +7,7 @@ from hello.models import Contacts
 
 class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
-        """ This test appearance messedzha should check that the page was
-            not found when the field name does not correspond to that given
-            in view.
+        """ 404 when there is no model in the database
         """
         del_rec = Contacts.objects.get(name=u'Євген')
         del_rec.delete()

@@ -7,10 +7,7 @@ from hello.models import Contacts
 
 class Tiket1TestAllFieldsOnPage(TestCase):
     def test_get_mainpage(self):
-        """ This test creates 3 model then makes http request and checks
-            whether matched only fields (data) second model povvynni attend
-            the html page. Data models 1 and 3 should not be on page. For
-            example at page  not be "Aldar" and "hodzha".
+        """ Showing a single entry, even if a few.
         """
         new_rec1 = Contacts(
             name=u"Алдар",
