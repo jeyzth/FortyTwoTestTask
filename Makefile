@@ -1,5 +1,5 @@
 MANAGE=django-admin.py
-SETTINGS=fortytwo_test_task.settings.common
+SETTINGS=fortytwo_test_task.settings
 
 auth:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --indent=2 auth > auth.json
