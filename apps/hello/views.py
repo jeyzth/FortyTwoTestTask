@@ -29,14 +29,13 @@ def chknewreq(request):
 
 def editor(request):
     if request.method == 'POST':
-         form = FormContact(request.POST)
-         if form.is_valid():
-             form.save()
-             return HttpResponseRedirect('/')
+        form = FormContact(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
     else:
-
         contact = get_object_or_404(Contacts, pk=1)
-        form = FormContact(initial={'name':contact.name, 'surname':contact.surname, 'dateofbird':contact.dateofbird   })
+        form = FormContact(instance=contact)
         return render(request, 'hello/editor.html',{
         'form':form,
     })

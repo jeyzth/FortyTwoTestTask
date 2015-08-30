@@ -2,7 +2,8 @@ from datetime import date
 from django import forms
 from django.forms import ModelForm,widgets
 from hello.models import Contacts
-
+import fortytwo_test_task.settings
+from django.contrib.admin.widgets import AdminDateWidget
 
 class DateSelectorWidget(widgets.MultiWidget):
     def __init__(self, attrs=None):
@@ -41,13 +42,18 @@ class DateSelectorWidget(widgets.MultiWidget):
 class FormContact(ModelForm):
     def __init__(self, *args, **kwargs):
         super(FormContact,self).__init__(*args, **kwargs)
+        fd = self.fields['dateofbird']
+        fd.widjet = AdminDateWidget()
+        
     class Meta:
         model = Contacts
         fields = ['name','surname','dateofbird','bio','email','jabber','skype','others']
-        widjets = {
-            'dateofbird': forms.DateInput(attrs={'class':'date_picker'})
+        widjets = {'dateofbird': AdminDateWidget(attrs={'class':'date_picker'})
         }
 
-        
 
+        
+"""        
+forms.DateInput(attrs={'class':'date_picker'}
+"""
  
