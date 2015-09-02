@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse
 
 
@@ -8,9 +8,12 @@ from hello.models import MyRequest
 
 
 def index(request):
-    contact = get_object_or_404(Contacts, pk=1)
-    context = {'contact': contact}
-    return render(request, 'hello/index.html', context)
+    try:
+        contact = Contacts.objects.order_by('pk')[0]
+        context = {'contact': contact}
+        return render(request, 'hello/index.html', context)
+    except:
+        return render(request, 'hello/emptytable.html', None)
 
 
 def requests10(request):
