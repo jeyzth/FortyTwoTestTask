@@ -42,13 +42,20 @@ class DateSelectorWidget(widgets.MultiWidget):
 class FormContact(ModelForm):
     def __init__(self, *args, **kwargs):
         super(FormContact,self).__init__(*args, **kwargs)
-        fd = self.fields['dateofbird']
-        fd.widjet = AdminDateWidget()
-        
+        self.fields['name'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['surname'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['bio'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['email'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['jabber'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['dateofbird'].widget.attrs.update({'class': 'datepicker'}),
+        self.fields['skype'].widget.attrs.update({'class': 'form-control'}),
+        self.fields['others'].widget.attrs.update({'class': 'form-control'})
     class Meta:
         model = Contacts
         fields = ['name','surname','dateofbird','bio','email','jabber','skype','others']
-        widjets = {'dateofbird': AdminDateWidget(attrs={'class':'date_picker'})
+        #widjets = {'dateofbird': AdminDateWidget(attrs={'class':'date_picker'})
+        widgets = {'dateofbirth': forms.DateInput(attrs={'class': 'datepicker'})
+                                     
         }
 
 

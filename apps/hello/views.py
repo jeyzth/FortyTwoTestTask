@@ -8,9 +8,13 @@ from hello.models import MyRequest
 from hello.forms import FormContact
 
 def index(request):
-    contact = get_object_or_404(Contacts, pk=1)
-    context = {'contact': contact}
-    return render(request, 'hello/index.html', context)
+    try:
+        contact = Contacts.objects.order_by('pk')[0]
+        # get_object_or_404(Contacts, pk=1)
+        context = {'contact': contact}
+        return render(request, 'hello/index.html', context)
+    except:
+        return (request, 'hello/dbempty.html', None)
 
 
 def requests10(request):
