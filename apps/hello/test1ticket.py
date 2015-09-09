@@ -73,5 +73,6 @@ class Tiket1Test(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        print ucontent
+        """print ucontent
+        """
         assert(ucontent.find(u"не знайдено жодного запису") > 0)
