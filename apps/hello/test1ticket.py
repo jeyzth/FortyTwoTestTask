@@ -2,11 +2,28 @@
 from django.test import TestCase
 from django.test.client import Client
 
+
 from hello.models import Contacts
 
 
-class Tiket1TestAllFieldsOnPage(TestCase):
+class Tiket1Test(TestCase):
+
     def test_get_mainpage(self):
+        """  This test checks whether all fields models shown on the web page
+             and correctly display Unicode Data.
+        """
+        c = Client()
+        response = c.get('http://localhost:8080')
+        ucontent = response.content.decode('utf8')
+        assert(ucontent.find(u"Євген") > 0)
+        assert(ucontent.find(u"Анонімов") > 0)
+        assert(ucontent.find(u"9 березня 1973 р.") > 0)
+        assert(ucontent.find(u"Shell") > 0)
+        assert(ucontent.find(u"jeyzth@gmail.com") > 0)
+        assert(ucontent.find(u"jeyzth@khavr.com") > 0)
+        assert(ucontent.find(u"Delphi") > 0)
+
+    def test_sinle_result(self):
         """ Showing a single entry, even if a few.
         """
         new_rec1 = Contacts(
@@ -19,18 +36,6 @@ class Tiket1TestAllFieldsOnPage(TestCase):
             skype=u"aldar.kose",
             others="Хтозна"
         )
-
-        """new_rec2 = Contacts(
-            name=u"Євген",
-            surname=u"Анонімов",
-            dateofbird=u"1973-02-03",
-            bio=sbio,
-            email=u"jeyzth@gmail.com",
-            jabber=u"jeyzth@khavr.com",
-            skype=u"ghost",
-            others=sothr
-        )
-        """
 
         new_rec3 = Contacts(
             name=u"Ходжа",
@@ -59,3 +64,15 @@ class Tiket1TestAllFieldsOnPage(TestCase):
         assert(ucontent.find(u"jeyzth@khavr.com") > 0)
         assert(ucontent.find(u"hodzha") < 0)
         assert(ucontent.find(u"nasredin") < 0)
+
+    def test_page_ws_empty_table(self):
+        """ Check no model in the database
+        """
+        del_rec = Contacts.objects.all()
+        del_rec.delete()
+        c = Client()
+        response = c.get('http://localhost:8080')
+        ucontent = response.content.decode('utf8')
+        """print ucontent
+        """
+        assert(ucontent.find(u"не знайдено жодного запису") > 0)
