@@ -22,36 +22,20 @@
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
          {% if latest_requests_list %}
         <script type="text/javascript">
-            var pk_onpage =new Array()  ;
             var i = 0;
+            var max_pk = {{ max_pk }} ;
         </script>
          
               <table>
-              <tr>
-                  <th>
-                      P/k
-                  </th>
-                  <th>
-                      Date Time
-                  </th>
-                   <th>
-                      IP
-                  </th>
-                  <th>
-                      Request
-                  </th>
-                  <th>
-                      Path
-                  </th>
-
+              <tr> 
+                  <th> P/k </th>
+                  <th> Date Time </th>
+                   <th> IP </th>
+                  <th> Request </th>
+                  <th> Path </th>
               </tr>
-              {% for rqst in latest_requests_list %}
               
-              <script type="text/javascript">
-                 pk_onpage[i] = {{ rqst.pk }} ;
-                 i = i+ 1;
-              </script>
-
+              {% for rqst in latest_requests_list %}
               <tr>
                   <td> {{ rqst.pk }}</td> 
                   <td> {{ rqst.query_dt }}</td> 
@@ -71,15 +55,12 @@
               {
                   $(function() {
                       $.get("/hello/chknewreq", function(data) {
-                          //alert(data);
-                          var z = data - pk_onpage[0]
+                          var z = data - max_pk
                           document.title="N " + z;
                       });
                   });
-                  
               }
-              ,1000);
-                   
+              ,1000);     
         </script>
     </body>
 </html>

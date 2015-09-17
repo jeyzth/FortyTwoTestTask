@@ -18,7 +18,8 @@ def index(request):
 
 def requests10(request):
     latest_requests_list = MyRequest.objects.order_by('pk').reverse()[:10]
-    context = {'latest_requests_list': latest_requests_list}
+    max_pk = latest_requests_list[0].pk
+    context = {'latest_requests_list': latest_requests_list, 'max_pk': max_pk}
     return render(request, 'hello/requests10.html', context)
 
 
