@@ -24,15 +24,6 @@ class Tiket3TestModel(TestCase):
             new_rec.save()
 
         queries = MyRequest.objects.order_by('pk').reverse()[:10]
-        cnt = queries.count()
-        print cnt
-        i = 1
-
-        for rec in queries:
-            s = str(i) + "\t" + str(rec.pk) + "\t" + str(rec.query_dt)
-            s = s + "\t" + rec.query_string
-            i = i + 1
-
         assert(queries.count() == 10)
 
     def test_15_http_reqwuest(self):
@@ -44,11 +35,24 @@ class Tiket3TestModel(TestCase):
         resp_r10_before_ucontent = resp_r10_before.content.decode('utf8')
         c2 = Client()
 
-        for i in range(1, 15):
+        for i in range(1, 16):
             c2.get('http://localhost:8080/')
 
         c2 = Client()
         resp_r10_after = c2.get('http://localhost:8080/hello/requests10')
         resp_r10_after_ucontent = resp_r10_after.content.decode('utf8')
-        print resp_r10_before_ucontent
-        print resp_r10_after_ucontent
+        s1 = resp_r10_before_ucontent
+        s1 = s1.replace(u' ', u'')
+        s2 = resp_r10_after_ucontent
+        s2 = s2.replace(u' ', u'')
+        i = s1.find(u'max_pk=')
+        ln = len(u'max_pk=')
+        j = s1.find(u';', i)
+        i = i + ln
+        s1 = s1[i:j]
+        i = s2.find(u'max_pk=') + ln
+        j = s2.find(u';', i)
+        s2 = s2[i:j]
+        print u"was max_pk=%s now \
+            max_pk=%s diff=%d" % (s1, s2, int(s2)-int(s1))
+        assert(int(s2)-int(s1) == 15)
