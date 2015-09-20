@@ -12,16 +12,25 @@ class Tiket1Test(TestCase):
         """  This test checks whether all fields models shown on the web page
              and correctly display Unicode Data.
         """
+        contact = Contacts.objects.order_by('pk')[0]
         c = Client()
         response = c.get('http://localhost:8080')
-        ucontent = response.content.decode('utf8')
-        assert(ucontent.find(u"Євген") > 0)
-        assert(ucontent.find(u"Анонімов") > 0)
-        assert(ucontent.find(u"9 березня 1973 р.") > 0)
-        assert(ucontent.find(u"Shell") > 0)
-        assert(ucontent.find(u"jeyzth@gmail.com") > 0)
-        assert(ucontent.find(u"jeyzth@khavr.com") > 0)
-        assert(ucontent.find(u"Delphi") > 0)
+        ucontent = response.content
+        s2 = ucontent
+        s2 = unicode(s2, 'utf8', 'ignore')
+        self.assertIn(contact.name, s2)
+        self.assertIn(contact.surname, s2)
+        sbio = contact.bio
+        sbio = sbio.replace(u'\n', u'<br />')
+        sbio = sbio.replace(u'&', u'&amp;')
+        sbio = sbio.replace(u'\'', u'&#39;')
+        self.assertIn(sbio, s2)
+        self.assertIn(contact.email, s2)
+        self.assertIn(contact.jabber, s2)
+        self.assertIn(contact.skype, s2)
+        s_others = contact.others
+        s_others = s_others.replace(u'\n', u'<br />')
+        self.assertIn(s_others, s2)
 
     def test_sinle_result(self):
         """ Showing a single entry, even if a few.
@@ -55,8 +64,6 @@ class Tiket1Test(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        """ print ucontent
-        """
         assert(ucontent.find(u"Алдар") < 0)
         assert(ucontent.find(u"Косе") < 0)
         assert(ucontent.find(u"9 березня 1973 р.") > 0)
@@ -73,6 +80,18 @@ class Tiket1Test(TestCase):
         c = Client()
         response = c.get('http://localhost:8080')
         ucontent = response.content.decode('utf8')
-        """print ucontent
-        """
         assert(ucontent.find(u"не знайдено жодного запису") > 0)
+
+    def test_context(self):
+        """ Check key (field of model) in dictionary (context)
+        """
+        contact = Contacts.objects.order_by('pk')[0]
+        context = {'contact': contact}
+        self.assertEqual(hasattr(context['contact'], 'name'), True)
+        self.assertEqual(hasattr(context['contact'], 'surname'), True)
+        self.assertEqual(hasattr(context['contact'], 'dateofbird'), True)
+        self.assertEqual(hasattr(context['contact'], 'bio'), True)
+        self.assertEqual(hasattr(context['contact'], 'email'), True)
+        self.assertEqual(hasattr(context['contact'], 'jabber'), True)
+        self.assertEqual(hasattr(context['contact'], 'skype'), True)
+        self.assertEqual(hasattr(context['contact'], 'others'), True)

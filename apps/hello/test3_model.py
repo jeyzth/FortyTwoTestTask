@@ -24,7 +24,7 @@ class Tiket3TestModel(TestCase):
             new_rec.save()
 
         queries = MyRequest.objects.order_by('pk').reverse()[:10]
-        assert(queries.count() == 10)
+        self.assertEqual(queries.count(), 10)
 
     def test_15_http_reqwuest(self):
         """ This test check how many record before
@@ -55,4 +55,4 @@ class Tiket3TestModel(TestCase):
         s2 = s2[i:j]
         print u"was max_pk=%s now \
             max_pk=%s diff=%d" % (s1, s2, int(s2)-int(s1))
-        assert(int(s2)-int(s1) == 15)
+        self.assertEqual(int(s2)-int(s1), 15)
