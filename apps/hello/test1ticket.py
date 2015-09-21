@@ -58,8 +58,6 @@ class Tiket1Test(TestCase):
         )
 
         new_rec1.save()
-        """new_rec2.save()
-        """
         new_rec3.save()
         c = Client()
         response = c.get('http://localhost:8080')
