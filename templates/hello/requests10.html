@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}N 0</title>
+        <title>{% block title %}{% endblock title %}Requests log</title>
 
         <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
 
@@ -26,7 +26,7 @@
             var max_pk = {{ max_pk }} ;
         </script>
          
-              <table>
+              <table id="tbl">
               <tr> 
                   <th> P/k </th>
                   <th> Date Time </th>
@@ -56,7 +56,22 @@
                   $(function() {
                       $.get("/hello/chknewreq", function(data) {
                           var z = data - max_pk
-                          document.title="N " + z;
+                          if (z > 0)
+                          {
+                              document.title="N " + z +" Requests log";
+                              var table=document.getElementById("tbl");
+                              var i=0;
+                              {% for rqst in latest_requests_list %}
+                                  document.getElementById("tbl").row[i].col[0].innerHTML= "{{ rqst.pk }}";
+                                  table.row[i].col[1].innerHTML= "{{ rqst.query_dt }}";
+                                  table.row[i].col[2].innerHTML= "{{ rqst.remote_ip }}";
+                                  table.row[i].col[3].innerHTML= "{{ rqst.remote_host }}";
+                                  table.row[i].col[4].innerHTML= "{{ rqst.query_string }}";
+                                  i = i +1;
+                              {% endfor %}
+                          }
+                          else
+                              document.title="Requests log";
                       });
                   });
               }

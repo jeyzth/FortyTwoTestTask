@@ -90,6 +90,6 @@ class Tiket1Test(TestCase):
         self.assertEqual(hasattr(context['contact'], 'dateofbird'), True)
         self.assertEqual(hasattr(context['contact'], 'bio'), True)
         self.assertEqual(hasattr(context['contact'], 'email'), True)
-        self.assertEqual(hasattr(context['contact'], 'jabber'), True)
         self.assertEqual(hasattr(context['contact'], 'skype'), True)
+        self.assertEqual(hasattr(context['contact'], 'jabber'), True)
         self.assertEqual(hasattr(context['contact'], 'others'), True)
