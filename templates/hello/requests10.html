@@ -24,6 +24,15 @@
         <script type="text/javascript">
             var i = 0;
             var max_pk = {{ max_pk }} ;
+            var cnt_req = {{ latest_requests_list|length }};
+            var is_focused;
+            window.onfocus = function(){
+              document.title="Requests log";
+              is_focused = true;
+            }
+            window.onblur = function(){
+              is_focused = false;
+            }
         </script>
          
               <table id="tbl">
@@ -36,12 +45,13 @@
               </tr>
               
               {% for rqst in latest_requests_list %}
-              <tr>
-                  <td> {{ rqst.pk }}</td> 
-                  <td> {{ rqst.query_dt }}</td> 
-                  <td>{{ rqst.remote_ip }}</td>
-                  <td>{{ rqst.remote_host }}</td> 
-                  <td>{{ rqst.query_string }}</td> 
+              <tr id="tr{{ forloop.counter }}">
+                  <td id="td{{ forloop.counter }}-1"> {{ rqst.pk }}</td> 
+                  <td id="td{{ forloop.counter }}-2"> 
+                  {{ rqst.query_dt|date:"d.m.Y H:i:s" }}</td> 
+                  <td id="td{{ forloop.counter }}-3">{{ rqst.remote_ip }}</td>
+                  <td id="td{{ forloop.counter }}-4">{{ rqst.remote_host }}</td> 
+                  <td id="td{{ forloop.counter }}-5">{{ rqst.query_string }}</td> 
               </tr>
               {% endfor %}
               </table>
@@ -53,27 +63,30 @@
         <script type="text/javascript"> 
            setInterval(function()
               {
-                  $(function() {
-                      $.get("/hello/chknewreq", function(data) {
-                          var z = data - max_pk
+                     var data_in={"p1":"1","p2":"p2"};   
+                      $.getJSON("/hello/chknewreq", data_in, function(data) 
+                      {
+                          var z = data["cur_max_pk"] - max_pk
                           if (z > 0)
                           {
+                              if (! is_focused )
                               document.title="N " + z +" Requests log";
-                              var table=document.getElementById("tbl");
-                              var i=0;
-                              {% for rqst in latest_requests_list %}
-                                  document.getElementById("tbl").row[i].col[0].innerHTML= "{{ rqst.pk }}";
-                                  table.row[i].col[1].innerHTML= "{{ rqst.query_dt }}";
-                                  table.row[i].col[2].innerHTML= "{{ rqst.remote_ip }}";
-                                  table.row[i].col[3].innerHTML= "{{ rqst.remote_host }}";
-                                  table.row[i].col[4].innerHTML= "{{ rqst.query_string }}";
-                                  i = i +1;
-                              {% endfor %}
+                              var i = 0;
+                              for (i=1; i<= cnt_req; i++){
+                                  for (j=1; j<5; j++)
+                                  { 
+                                      key=i+"-"+j
+                                      ikey="td"+key
+                                      document.getElementById(ikey).innerHTML=
+                                      data[key];
+                                  }
+                              }
+                              if (is_focused )
+                              max_pk = data["cur_max_pk"] ;
                           }
                           else
-                              document.title="Requests log";
+                          document.title="Requests log";
                       });
-                  });
               }
               ,1000);     
         </script>
