@@ -8,11 +8,9 @@ from hello.models import MyRequest
 
 class Tiket3TestModel(TestCase):
     def test_add_rec(self):
-        """  This test check model for next opertion
-            Add 15 record into table DB
-            with timeout 1 sec.
-            After Add, test requests last 10 records.
-            Delete records from table
+        """ This test checks model MyRequest and view data frome this model.
+            for next opertion Add 15 record into table DB
+            with timeout 1 sec. After Add, test requests last 10 records.
         """
         for i in range(1, 15):
             new_rec = MyRequest(
@@ -27,8 +25,11 @@ class Tiket3TestModel(TestCase):
         self.assertEqual(queries.count(), 10)
 
     def test_15_http_reqwuest(self):
-        """ This test check how many record before
-            and how many after it made 15 request.
+        """ This test checks midleware keeps query in the model MyRequests
+            For this test, saved pages content request10 before 15th requests
+            to the home page and after it Both content have variable Max_PK
+            (Max value PrimaryKey). Max_PK diference from different contents
+            should match the number of queries to the home page.
         """
         c1 = Client()
         resp_r10_before = c1.get('http://localhost:8080/hello/requests10')
