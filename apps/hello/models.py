@@ -10,7 +10,7 @@ class Contacts(models.Model):
     dateofbird = models.DateField()
     bio = models.TextField()
     email = models.EmailField()
-    jabber = models.EmailField()
+    jabber = models.CharField(max_length=20)
     skype = models.CharField(max_length=20)
     others = models.TextField()
 

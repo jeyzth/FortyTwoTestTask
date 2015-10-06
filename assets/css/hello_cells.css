@@ -1,15 +1,24 @@
       body {
-          background-image: url(cell10x10.gif);
-          background-position: top centr;
+          margin: 0px;
+          padding: 0px;
+          background-image: url(/static/img/cell10x10.gif);
+          background-position: top center;
           background-repeat: repeat;
       }
 
       #workspace {
-          width: 960px ;
-          margin-right: auto;
-          margin-left: auto;
-          padding-left: 30 px;
+          width: 100% ;
+          margin-top: 20px;
+          margin-left: 30px;
+          margin-right: 30px;
           overflow: hidden;
+          border-bottom: 1px solid black;
+      }
+      #footer {
+          width: 100% ;
+          margin: 29px;
+          overflow: hidden;
+          /*display: none;*/
       }
 
       #lcolumn {
@@ -20,29 +29,37 @@
       #rcolumn {
           margin-left: 365px;
           width: 300px;
+          overflow: hidden;
       }
 
       #multiline {
           color: black;
-          font-weight: bold;
+          margin-top: 25px;
           margin-left: 5px;
           margin-right: 5px;
-          padding: 5px; 
+          padding: 1px; 
       }
 
-      .sfields {
+      #sfields {
           color: black;
-          font-weight: bold;
-          margin: 2px;
-          padding: 5px; 
+          margin: 0px;
+          padding: 0px; 
       }
 
 
       ul {
+         margin: 0px;
+         padding: 0px;
          list-style: none;
       }
 
       li {
-          margin: 5px;
-          padding: 5px; 
+          margin: 0px 0px 10px 0px;
+          padding: 0px; 
+      }
+
+      h3 {
+          margin: 5px 0px 5px 0px;
+          padding: 0px; 
+
       }
